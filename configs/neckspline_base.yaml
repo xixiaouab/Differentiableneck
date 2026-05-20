@@ -1,0 +1,43 @@
+seed: 42
+device: cuda
+
+plane:
+  tangent_weight: 0.25
+  initial_parent_radius_mm: 1.0
+
+spline:
+  stages:
+    - control_points: 8
+      iterations: 100
+      profile_radius_mm: 1.0
+    - control_points: 12
+      iterations: 100
+      profile_radius_mm: 0.6
+    - control_points: 16
+      iterations: 100
+      profile_radius_mm: 0.3
+  num_samples: 128
+  reference_curvature: 1.0
+
+loss:
+  boundary: 1.0
+  gradient: 0.5
+  profile: 0.25
+  tightness: 0.1
+  scale: 0.1
+  self: 0.5
+  ec: 0.5
+  plane: 1.0
+  anchor: 0.25
+
+optim:
+  lr: 0.02
+  weight_decay: 0.0001
+
+data:
+  volume_path: data/case_volume.pt
+  boundary_path: data/case_boundary.pt
+  gradient_path: data/case_gradient.pt
+  centerline_points_path: data/centerline_points.pt
+  centerline_weights_path: data/centerline_weights.pt
+  tangent_path: data/parent_tangent.pt
